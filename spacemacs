@@ -116,8 +116,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Meslo LG M for Powerline"
-                               :size 14
+   dotspacemacs-default-font '("DejaVu Sans Mono"
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -287,8 +287,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq tramp-default-method "ssh")
   (global-linum-mode)
   (setq column-number-mode t)
-  (setq-default dotspacemacs-configuration-layers
-                '((python :variables python-test-runner 'pytest)))
   (add-hook 'python-mode-hook (lambda ()
                                 (flycheck-mode 1)
                                 (semantic-mode 1)
