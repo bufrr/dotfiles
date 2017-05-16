@@ -1,19 +1,40 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/home/users/zhouyc/.oh-my-zsh
-export TERM=screen-256color
-export TZ='Asia/Shanghai';
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
-export BYOBU_CHARMAP=UTF-8
-export LC_CTYPE="zh_CN.UTF-8"
-alias emacs="~/bin/emacs"
-export WORKON_HOME=~/Env
-source /home/users/zhouyc/.local/bin/virtualenvwrapper.sh
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/adam/.oh-my-zsh
+source /usr/local/bin/virtualenvwrapper.sh
+export TMPDIR=/var/folders/8l/mn3whrl17sx2kyfsrkklfczr0000gn/T
+export TERM=screen-256color
+#export LC_CTYPE=en_US.UTF-8
+#export LC_ALL=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon dir vcs virtualenv)
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %m.%d}"
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
+
+POWERLEVEL9K_OS_ICON_BACKGROUND="white"
+POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="spaceship"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -61,7 +82,7 @@ plugins=(git)
 
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -90,9 +111,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
 
-# iscanv env
-export KS_DATA_PATH="/home/users/zhouyc/iscanv/data"
-export KS_TMP_PATH="/home/users/zhouyc/iscanv/data/tmp/"
-export PYTHONPATH="/home/users/zhouyc/iscanv/src"
-export KS_SRC_PATH="/home/users/zhouyc/iscanv/src/"
+function setproxy() {
+        # export {HTTP,HTTPS,FTP}_PROXY="http://127.0.0.1:3128" 也可以设置http代理
+    export ALL_PROXY=socks5://127.0.0.1:1080
+}
+
+function unsetproxy() {
+        # unset {HTTP,HTTPS,FTP}_PROXY
+     unset ALL_PROXY
+}
+
+function startproxy() {
+    /usr/local/sbin/privoxy /usr/local/etc/privoxy/config
+}
+

@@ -50,7 +50,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      editorconfig
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -116,8 +118,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("DejaVu Sans Mono"
-                               :size 15
+   dotspacemacs-default-font '("Meslo LG M for Powerline"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -254,6 +256,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   )
+  (setq configuration-layer--elpa-archives
+      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+              ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
 (defun dotspacemacs/user-config ()
   (progn
@@ -287,6 +293,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq tramp-default-method "ssh")
   (global-linum-mode)
   (setq column-number-mode t)
+  (setq-default dotspacemacs-configuration-layers
+                '((python :variables python-test-runner 'pytest)))
   (add-hook 'python-mode-hook (lambda ()
                                 (flycheck-mode 1)
                                 (semantic-mode 1)
@@ -294,6 +302,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                       flycheck-checker-error-threshold 900
                                       flycheck-pylintrc "~/.pylintrc")))
 
+  (editorconfig-mode 1)
   ;;(setq-default dotspacemacs-configuration-layers '(
   ;;              (python :variables python-enable-yapf-format-on-save t)))
   "Configuration function for user code.
